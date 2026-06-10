@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }) => {
             api.defaults.headers.Authorization = `Bearer ${tokens.accessToken}`;
 
             localStorage.setItem('@EstudaAI:user', JSON.stringify(userData));
-            localStorage.setItem('@EstudaAI:tokens', tokens.accessToken);
+            localStorage.setItem('@EstudaAI:token', tokens.accessToken);
             localStorage.setItem('@EstudaAI:refreshToken', tokens.refreshToken);
 
             return { success: true, role: userData.role_user };
