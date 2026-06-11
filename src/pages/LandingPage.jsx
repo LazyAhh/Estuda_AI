@@ -1,13 +1,10 @@
-import { Link } from "react-router-dom"
 import { Footer } from "../components/layout/Footer"
 import { Navbar } from "../components/layout/Navbar"
-import { useAuth } from "../context/AuthContext"
 import { HeroSection } from "../components/landingPage/HeroSection"
 import { LandingPageSection } from "../components/landingPage/LandingPageSection"
 import { LandingPageCard } from "../components/landingPage/LandingPageCard"
 
 export const LandingPage = () => {
-    const { isAuthenticated, user, logout } = useAuth();
 
     return (
         <div className="flex flex-col bg-slate-600 items-center gap-4">
