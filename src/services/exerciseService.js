@@ -1,5 +1,24 @@
 import api from "./api";
 
+const formatacao = {
+    subject_exercises: "subjectExercises",
+    description_exercises: "descriptionExercises",
+    grade_level_exercises: "gradeLevelExercises",
+    complexity_level_exercises: "complexityLevelExercises",
+    duration_minutes_exercises: "durationMinutesExercises",
+    objectives_exercises: "objectiveExercises",
+    themes_exercises: "themeExercises",
+    exercises: "exerciseItems"
+};
+
+const camposPermitidosPatch = [
+    "subjectExercises",
+    "descriptionExercises",
+    "gradeLevelExercises",
+    "complexityLevelExercises",
+    "durationMinutesExercises"
+];
+
 export const getExercicios = async (page = 1, limit = 10, search = "") => {
     try {
         const response = await api.get(`/exercises/get-exercises/user?page=${page}&limit=${limit}&search=${search}`);
@@ -27,12 +46,20 @@ export const createExercicio = async (exerciseData) => {
     }
 };
 
-export const updateExercicio = async (idExercise, updateData) =>{
-    try{
-        const response = await api.patch(`/exercises/update/exercise/${idExercise}`, updateData);
-        return {success: true, data: response.data}
-    } catch (error){
-        return {success: false, error: error.response?.data?.message || "Erro ao atualizar o exercício"};
+export const updateExercicio = async (idExercise, updateData) => {
+    try {
+        const dataFormatada = {};
+        Object.keys(updateData).forEach(key => {
+            const mapKey = formatacao[key] || key;
+            if (camposPermitidosPatch.includes(mapKey) && updateData[key] !== undefined) {
+                dataFormatada[mapKey] = updateData[key];
+            }
+        });
+
+        const response = await api.patch(`/exercises/update/exercise/${idExercise}`, dataFormatada);
+        return { success: true, data: response.data }
+    } catch (error) {
+        return { success: false, error: error.response?.data?.message || "Erro ao atualizar o exercício" };
     }
 };
 
