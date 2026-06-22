@@ -48,7 +48,7 @@ api.interceptors.response.use(
 
                     return api(originalRequest);
                 }
-            } catch (refreshError) {
+            } catch {
                 localStorage.removeItem('user');
                 localStorage.removeItem('token');
                 localStorage.removeItem('refreshToken');
