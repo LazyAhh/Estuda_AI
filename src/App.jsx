@@ -1,4 +1,5 @@
 import { AuthProvider } from "./context/AuthContext"
+import { NotificationProvider } from "./context/NotificationContext"
 import AppRoutes from "./routes/AppRoutes"
 import './App.css'
 
@@ -7,7 +8,9 @@ function App() {
   return (
     <>
       <AuthProvider>
-        <AppRoutes />
+        <NotificationProvider>
+          <AppRoutes />
+        </NotificationProvider>
       </AuthProvider>
     </>
   )
