@@ -111,25 +111,6 @@ export const DetalheExercicio = ({ exercicio, onVoltar }) => {
                                     </div>
                                 )}
 
-                                {questao.type_exercise === "verdadeiro-falso" && (
-                                    <div className="flex gap-4 mt-2">
-                                        {["V", "F"].map((opcaoVF) => {
-                                            const selecionado = respostasUsuario[indexQuestao] === opcaoVF;
-                                            return (
-                                                <button
-                                                    key={opcaoVF}
-                                                    type="button"
-                                                    disabled={retornoFeedback?.verificado}
-                                                    onClick={() => handleOpcaoClick(indexQuestao, opcaoVF)}
-                                                    className={`px-6 py-2.5 rounded-lg border text-sm font-bold transition-all cursor-pointer flex items-center gap-2 min-w-[80px] justify-center ${selecionado ? "border-indigo-900 bg-indigo-50/50 text-indigo-900" : "border-slate-200 hover:bg-slate-50 text-slate-700"} disabled:opacity-85 disabled:cursor-not-allowed`}
-                                                >
-                                                    <span className={`w-3 h-3 rounded-full border ${selecionado ? "border-indigo-900 bg-indigo-900" : "border-slate-350"}`} />
-                                                    {opcaoVF === "V" ? "Verdadeiro" : "Falso"}
-                                                </button>
-                                            );
-                                        })}
-                                    </div>
-                                )}
 
                                 {questao.type_exercise === "discursiva" && (
                                     <div className="mt-2">
@@ -165,9 +146,15 @@ export const DetalheExercicio = ({ exercicio, onVoltar }) => {
                                             }
                                         </div>
                                         {questao.type_exercise === "discursiva" && (
-                                            <p className="text-xs text-slate-700 leading-relaxed bg-white/70 border border-slate-200/50 p-3 rounded-md mt-1 font-mono"><strong>Resposta esperada:</strong> {questao.correct_answer_exercise}</p>
+                                            <p className="text-xs text-slate-700 leading-relaxed bg-white/70 border border-slate-200/50 p-3 rounded-md mt-1 font-mono whitespace-pre-wrap">
+                                                <strong>Resposta esperada:</strong><br />
+                                                {questao.correct_answer_exercise}
+                                            </p>
                                         )}
-                                        <p className="text-xs leading-relaxed mt-1"><strong>Explicação:</strong> {retornoFeedback.explicacao || "Nenhuma explicação fornecida."}</p>
+                                        <p className="text-xs leading-relaxed mt-1 whitespace-pre-wrap">
+                                            <strong>Explicação:</strong><br />
+                                            {retornoFeedback.explicacao || "Nenhuma explicação fornecida."}
+                                        </p>
                                     </div>
                                 )}
                             </div>

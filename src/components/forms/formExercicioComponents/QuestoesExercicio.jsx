@@ -70,7 +70,6 @@ export const QuestoesExercicio = ({ states, actions, disabled }) => {
                                             className="w-full px-3 py-1.5 text-xs text-slate-900 bg-white border border-solid border-slate-300 rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-900 focus:border-indigo-900 transition-all select-text"
                                         >
                                             <option value="multipla-escolha">Múltipla Escolha</option>
-                                            <option value="verdadeiro-falso">Verdadeiro ou Falso</option>
                                             <option value="discursiva">Discursiva</option>
                                         </select>
                                     </div>
@@ -137,12 +136,12 @@ export const QuestoesExercicio = ({ states, actions, disabled }) => {
                                 {q.type_exercise !== "multipla-escolha" && (
                                     <div className="flex flex-col gap-1.5 w-full">
                                         <label className="text-xs font-semibold text-slate-700 select-none">Resposta Esperada</label>
-                                        <input
-                                            type="text"
-                                            placeholder={q.type_exercise === "verdadeiro-falso" ? "Ex: V, F, V, V, F" : "Gabarito esperado"}
+                                        <textarea
+                                            placeholder="Gabarito esperado"
                                             value={q.correct_answer_exercise}
                                             onChange={(e) => actions.alterarQuestao(qIndex, "correct_answer_exercise", e.target.value)}
                                             disabled={disabled}
+                                            rows="3"
                                             className="w-full px-3 py-1.5 text-xs text-slate-900 bg-white border border-solid border-slate-300 rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-900 focus:border-indigo-900 transition-all select-text"
                                             required
                                         />
@@ -151,12 +150,12 @@ export const QuestoesExercicio = ({ states, actions, disabled }) => {
 
                                 <div className="flex flex-col gap-1.5 w-full">
                                     <label className="text-xs font-semibold text-slate-700 select-none">Explicação da Resposta</label>
-                                    <input
-                                        type="text"
+                                    <textarea
                                         placeholder="Por que essa resposta está correta?"
                                         value={q.explanation_exercise}
                                         onChange={(e) => actions.alterarQuestao(qIndex, "explanation_exercise", e.target.value)}
                                         disabled={disabled}
+                                        rows="3"
                                         className="w-full px-3 py-1.5 text-xs text-slate-900 bg-white border border-solid border-slate-300 rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-900 focus:border-indigo-900 transition-all select-text"
                                         required
                                     />
