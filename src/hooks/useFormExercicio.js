@@ -13,12 +13,12 @@ export const useFormExercicio = (dadosIniciais) => {
     useEffect(() => {
         if (dadosIniciais) {
             setSubject(dadosIniciais.subjectExercises || "");
-            setDescription(dadosIniciais.descriptionExercies || "");
+            setDescription(dadosIniciais.descriptionExercises || dadosIniciais.descriptionExercies || "");
             setGradeLevel(dadosIniciais.gradeLevelExercises || "");
             setComplexity(dadosIniciais.complexityLevelExercises || "");
-            setDuration(dadosIniciais.durarionMinutesExercises || 30);
-            setObjectives(dadosIniciais.objectiveExercises || []);
-            setThemes(dadosIniciais.themesExercises || []);
+            setDuration(dadosIniciais.durationMinutesExercises || dadosIniciais.durarionMinutesExercises || 30);
+            setObjectives(dadosIniciais.objectiveExercises || dadosIniciais.objectivesExercises || []);
+            setThemes(dadosIniciais.themeExercises || dadosIniciais.themesExercises || []);
 
 
             if (dadosIniciais.exerciseItems) {
